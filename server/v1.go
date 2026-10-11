@@ -78,7 +78,8 @@ func (s *Server) serveV1Frame(ctx connContext, request frame_v1.Frame) {
 }
 
 // activateV1 runs Runtime.Activate, then Grant(1) → Activate(1), and finally
-// grants any other versions returned by the handshake without activating them.
+// grants any other versions from the Handshake Answer without activating them.
+// The answer itself advertises those granted versions to the client.
 //
 // skipAuth is true when v1 was already granted and only the request row is missing.
 func (s *Server) activateV1(ctx connContext, request frame_v1.Frame, skipAuth bool) {

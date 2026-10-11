@@ -1,9 +1,11 @@
 // Package server accepts TCP clients and drives the protocol handshake.
 //
 // [Server] listens for connections, registers each peer with a v0 Hello, then
-// routes later frames to a registered protocol runtime (currently v1). Answers
-// are written on a per-connection writer goroutine. A nil [logger.Logger] is
-// allowed: log helpers become no-ops.
+// routes later frames to a registered protocol runtime (currently v1).
+// A successful v1 Handshake Answer lists granted protocol versions the client
+// may use without re-authentication; the server also records them in
+// [table.ConnectionsTable]. Answers are written on a per-connection writer
+// goroutine. A nil [logger.Logger] is allowed: log helpers become no-ops.
 //
 // Optional TLS is configured on [config.ServerConfig] via WithTLSConfig or
 // WithTLSFiles; the listener requires TLS 1.3 or newer. Without credentials
