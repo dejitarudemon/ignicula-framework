@@ -10,7 +10,9 @@
 // the stream unusable closes the connection. Other decode failures return an
 // encoded error answer. [Runtime.Activate] and [Runtime.Handle] take an already
 // decoded [frame.Frame]. Activate authenticates a handshake and returns a
-// [row.RequestRow]; the auth handler runs unless Activate is asked to skip it.
+// [row.RequestRow] plus a Handshake Answer that lists accepted compressions and
+// granted protocol versions (for use without re-authentication); the auth
+// handler runs unless Activate is asked to skip it.
 // Handle yields the encoded answers for read, write, delete, ping, and batch.
 //
 // Outgoing Read and Batch answers may be compressed when compressors are

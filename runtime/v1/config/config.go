@@ -97,7 +97,8 @@ func (rbc *RuntimeBuilderConfig) WithCompressors(compressors ...compressor.Compr
 }
 
 // WithAllowedVersions appends protocol versions to the allowed set, skipping
-// duplicates.
+// duplicates. After a successful handshake these versions are listed in the
+// Handshake Answer and granted for use without re-authentication.
 func (rbc *RuntimeBuilderConfig) WithAllowedVersions(versions ...fields.Version) *RuntimeBuilderConfig {
 	for _, v := range versions {
 		if !rbc.hasVersion(v) {
@@ -118,6 +119,7 @@ func (rbc *RuntimeBuilderConfig) BatchLimit() fields.BatchLimit {
 }
 
 // Versions returns the protocol versions this config allows.
+// The same list is written into a successful Handshake Answer as granted versions.
 func (rbc *RuntimeBuilderConfig) Versions() []fields.Version {
 	return rbc.versions
 }
