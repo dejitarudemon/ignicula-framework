@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.2 - 2026-10-10
+
+Changed:
+
+- Renamed the module and brand from `axidb-go-server` / AxiDB to `ignicula-framework` / Ignicula
+- Switched the wire dependency from `axidb-go-protocol` to `ignicula-wire` v1.1.1
+- Updated README badges and docs links for the new repository names
+
 ## 0.8.0 - 2026-10-10
 
 First tagged release of the Go server framework for Ignicula.
