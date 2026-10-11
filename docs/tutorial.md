@@ -117,7 +117,7 @@ rt := runtime_v1.NewRuntimeBuilder(*cfg).
 | `WithMaxGoroutinesPerBatch` | Параллелизм внутри parallel batch. Дефолт 4.                                                               |
 | `WithCompressors`           | Какие алгоритмы сервер умеет. Без вызова - только uncompressed. Какой кодек взять на ответ решает runtime. |
 | `WithStartUseCompressionAt` | С какого размера тела ответ могут сжать. Дефолт 5 КиБ.                                                     |
-| `WithAllowedVersions`       | Версии после Activate (дефолт уже `[1]`).                                                                  |
+| `WithAllowedVersions`       | Версии, которые попадают в Handshake Answer как granted (дефолт уже `[1]`).                               |
 | `WithHandler*`              | Auth / Read / Write / Delete. Без замены - stub `CommandNotImplemented`.                                   |
 | `WithLogger`                | Лог runtime. Можно не вызывать.                                                                            |
 

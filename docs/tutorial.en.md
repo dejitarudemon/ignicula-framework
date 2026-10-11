@@ -114,7 +114,7 @@ rt := runtime_v1.NewRuntimeBuilder(*cfg).
 | `WithMaxGoroutinesPerBatch` | Parallelism inside a parallel batch. Default 4. |
 | `WithCompressors` | Algorithms the server supports. Omit for uncompressed only. The runtime picks the codec per answer. |
 | `WithStartUseCompressionAt` | Body size from which answers may be compressed. Default 5 KiB. |
-| `WithAllowedVersions` | Versions after Activate (default already `[1]`). |
+| `WithAllowedVersions` | Versions granted in the Handshake Answer (default already `[1]`). |
 | `WithHandler*` | Auth / Read / Write / Delete. Unset stubs return `CommandNotImplemented`. |
 | `WithLogger` | Runtime log. Optional. |
 

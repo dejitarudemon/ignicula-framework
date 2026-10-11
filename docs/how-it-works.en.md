@@ -127,11 +127,11 @@ After registration the first meaningful v1 frame is normally Handshake.
 | 3 | `Runtime.Decode` | Full frame; if a protocol error already has an answer - `sendAnswer` immediately |
 | 4 | `go serveV1Frame` | Frame handling is async relative to the read loop |
 | 5 | `table.Get(conn, 1)` | `ErrorVersionNotGranted` → `activateV1(..., skipAuth=false)`; `ErrorVersionNotActivated` → `skipAuth=true` |
-| 6 | `Runtime.Activate` | Validate Handshake; call Auth (unless skip); build Handshake Answer; create `RequestRow` |
+| 6 | `Runtime.Activate` | Validate Handshake; call Auth (unless skip); build Handshake Answer (accepted compressions + granted versions); create `RequestRow` |
 | 7 | `table.Grant(1)` | Version granted |
 | 8 | `table.Activate(1, requestRow)` | Row stored as `RegistrationRow` |
-| 9 | `table.Grant(others)` | Versions from the runtime `allowedVersions` (no Activate), only when not `skipAuth` |
-| 10 | `sendAnswer` | Handshake Answer bytes |
+| 9 | `table.Grant(others)` | Other versions from the Handshake Answer / runtime `allowedVersions` (no Activate), only when not `skipAuth` |
+| 10 | `sendAnswer` | Handshake Answer bytes (client may use listed versions without re-auth) |
 
 If Activate returns an error-answer (`requestRow == nil`), the server only writes the bytes and does not change the table.
 

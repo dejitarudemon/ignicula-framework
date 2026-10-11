@@ -127,11 +127,11 @@ Activate / Get             Handle / Ping
 | 3 | `Runtime.Decode` | Полный кадр; при протокольной ошибке с готовым answer - сразу `sendAnswer` |
 | 4 | `go serveV1Frame` | Обработка кадра асинхронна относительно read-loop |
 | 5 | `table.Get(conn, 1)` | `ErrorVersionNotGranted` → `activateV1(..., skipAuth=false)`; `ErrorVersionNotActivated` → `skipAuth=true` |
-| 6 | `Runtime.Activate` | Валидация Handshake; вызов Auth (если не skip); сборка Handshake Answer; создание `RequestRow` |
+| 6 | `Runtime.Activate` | Валидация Handshake; вызов Auth (если не skip); сборка Handshake Answer (принятые compressions + granted versions); создание `RequestRow` |
 | 7 | `table.Grant(1)` | Версия выдана |
 | 8 | `table.Activate(1, requestRow)` | Row сохранён как `RegistrationRow` |
-| 9 | `table.Grant(остальные)` | Версии из `allowedVersions` runtime (без Activate), только если не `skipAuth` |
-| 10 | `sendAnswer` | Байты Handshake Answer |
+| 9 | `table.Grant(остальные)` | Остальные версии из Handshake Answer / `allowedVersions` runtime (без Activate), только если не `skipAuth` |
+| 10 | `sendAnswer` | Байты Handshake Answer (клиент может использовать перечисленные версии без повторной auth) |
 
 Если Activate вернул error-answer (`requestRow == nil`), сервер только отдаёт байты и не меняет таблицу.
 
