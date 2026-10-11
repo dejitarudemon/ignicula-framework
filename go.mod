@@ -2,7 +2,7 @@ module github.com/dejitarudemon/ignicula-framework
 
 go 1.27.1
 
-require github.com/dejitarudemon/ignicula-wire v1.1.1
+require github.com/dejitarudemon/ignicula-wire v1.2.0
 
 require (
 	bursavich.dev/crc v0.1.3 // indirect
